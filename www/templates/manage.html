@@ -1,0 +1,27 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Scan for Robot</h1>
+    <div class="buttons">
+      <a class="button button-icon icon ion-close-round" ng-click="closeManage()"></a>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-icon-left item-toggle" ng-repeat="device in devices">
+          <i class="icon ion-model-s"></i>
+          <h2>{{device.name}}</h2>
+          <p>{{device.address}} {{device.status}}</p>
+          <label class="toggle toggle-balanced">
+            <input type="checkbox" ng-model="device.status" ng-true-value="'connected'" ng-false-value="'disconnected'" ng-disabled="device.status == 'unknown'">
+            <div class="track">
+              <div class="handle"></div>
+            </div>
+          </label>
+      </ion-item>
+    </ion-list>
+    <button class="button button-block" ng-class="scanning ? 'button-assertive' : 'button-positive'" ng-click="startStopScan()">
+      {{scanning ? 'SCANNING' : 'SCAN'}}
+      <i class="fa fa-spinner" ng-show="scanning" ng-class="{'fa-pulse' : scanning}"></i>
+    </button>
+  </ion-content>
+</ion-modal-view>
